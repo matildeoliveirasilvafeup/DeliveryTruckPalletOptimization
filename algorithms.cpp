@@ -78,7 +78,20 @@ unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsi
     std::ofstream input("script_files/input.txt");
     std::ofstream output("script_files/input.txt");
 
+    //add values to the input file
 
+    //1 - number of items
+    input << n << std::endl;
+    //2 - capacity
+    input << maxWeight << std::endl;
+    //3 - weights
+    for (auto w : weights) input << w << ' ';
+    input << std::endl;
+    //4 - values
+    for (auto v : values) input << v << ' ';
+    input << std::endl;
+
+    return 0;
 }
 
 unsigned int Algorithms::dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
