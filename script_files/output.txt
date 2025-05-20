@@ -1,0 +1,3 @@
+13 ---> total profit
+10 ---> total weight
+0 1 3 ---> o id dos items selecionados.

@@ -70,3 +70,7 @@ void Algorithms::back_tracking_rec(unsigned int values[], unsigned int weights[]
         back_tracking_rec(values, weights, n, curIndex + 1, maxWeight, curValue, curItems, maxValue, usedItems);
     }
 }
+
+unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
+    return -1;
+}
