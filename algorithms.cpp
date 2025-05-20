@@ -3,6 +3,8 @@
 //
 
 #include "algorithms.h"
+#include <iostream>
+#include <fstream>
 
 unsigned int Algorithms::brute_force(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     bool curCandidate[n];
@@ -73,4 +75,52 @@ void Algorithms::back_tracking_rec(unsigned int values[], unsigned int weights[]
 
 unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     return -1;
+}
+
+unsigned int Algorithms::dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
+    unsigned int maxValue[n][maxWeight+1];
+    for (int i = 0; i < n; i++) {
+        for (int k = 0; k < maxWeight+1; k++) {
+            maxValue[i][k] = 0;
+        }
+    }
+
+    int value1, value2; //value of sack on H1, value of sack on H2
+    for (int i = 0; i < n; i++) {
+        for (int k = 1; k < maxWeight+1; k++) {
+            //h1, dont put item
+            if (i > 0) value1 = maxValue[i-1][k];
+            else value1 = 0;
+
+            //h2, put item
+            if (i > 0) {
+                if (k >= weights[i]) value2 = maxValue[i-1][k-weights[i]] + values[i];
+                else value2 = maxValue[i-1][k];
+            }
+            else {
+                if (k >= weights[i]) value2 = values[i];
+                else value2 = 0;
+            }
+
+            if (value1 > value2) maxValue[i][k] = value1;
+            else maxValue[i][k] = value2;
+
+        }
+    }
+
+    for (int i = 0; i < n; i++) usedItems[i] = false;
+
+    int curWeight = maxWeight;
+    for (int i = n-1; i >= 1; i--) {
+        if (maxValue[i][curWeight] != maxValue[i-1][curWeight]) {
+            usedItems[i] = true;
+            curWeight -= weights[i];
+            if (curWeight <= 0) break;
+        }
+    }
+    if (curWeight >= weights[0]) {
+        usedItems[0] = true;
+    }
+
+    return maxValue[n-1][maxWeight];
 }
