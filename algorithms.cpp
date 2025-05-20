@@ -37,3 +37,4 @@ unsigned int Algorithms::brute_force(unsigned int values[], unsigned int weights
     }
     return maxValue;
 }
+
