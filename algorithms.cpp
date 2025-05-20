@@ -3,8 +3,13 @@
 //
 
 #include "algorithms.h"
+
+#include <format>
 #include <iostream>
 #include <fstream>
+#include <set>
+#include <sstream>
+#include <vector>
 
 unsigned int Algorithms::brute_force(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     bool curCandidate[n];
@@ -76,7 +81,7 @@ void Algorithms::back_tracking_rec(unsigned int values[], unsigned int weights[]
 unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     //create input and output files, or clean them if they already exist
     std::ofstream input("script_files/input.txt");
-    std::ofstream output("script_files/input.txt");
+    std::ofstream output("script_files/output.txt");
 
     //add values to the input file
 
@@ -85,13 +90,50 @@ unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsi
     //2 - capacity
     input << maxWeight << std::endl;
     //3 - weights
-    for (auto w : weights) input << w << ' ';
+    for (int i = 0; i < n; i++) input << weights[i] << ' ';
     input << std::endl;
     //4 - values
-    for (auto v : values) input << v << ' ';
+    for (int i = 0; i < n; i++) input << values[i] << ' ';
     input << std::endl;
 
-    return 0;
+    //run python script
+
+    int ret = system("python ilp_solver.py script_files/input.txt script_files/output.txt");
+    if (ret != 0) {
+        std::cerr << "ilp_solver.py failed" << std::endl;
+        return -1;
+    }
+
+    //read output
+
+    std::ifstream infile("script_files/output.txt");
+    int totalValue, totalWeight;
+    std::string line;
+
+    std::getline(infile, line);
+    totalValue = stoi(line);
+
+    std::getline(infile, line);
+    totalWeight = stoi(line);
+
+    std::getline(infile, line);
+    std::istringstream iss(line);
+    std::set<int> selectedIndices;
+    int index;
+    while (iss >> index) {
+        selectedIndices.insert(index);
+    }
+
+    infile.close();
+
+    for (int i = 0; i < n; i++) {
+        if (selectedIndices.contains(i)) usedItems[i] = true;
+    }
+
+
+    input.close();
+    output.close();
+    return totalValue;
 }
 
 unsigned int Algorithms::dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {

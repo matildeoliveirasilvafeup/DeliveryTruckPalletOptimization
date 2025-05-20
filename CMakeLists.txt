@@ -3,8 +3,9 @@ project(DAProject2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(DAProject2 main.cpp
+add_executable(DAProject2
         csvparsing.cpp
         algorithms.h
         algorithms.cpp
-        ilp_test_delete_later.cpp)
+        main.cpp
+        algorithms_runner.cpp)

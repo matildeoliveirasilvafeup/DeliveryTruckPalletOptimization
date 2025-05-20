@@ -1,4 +1,4 @@
-5 ---> número de items
-10 ---> Capacity
-2 3 4 5 10 ---> weights
-3 4 5 6 11 ----> profit
+5
+5
+6 6 5 1 1 
+1 2 6 3 4 
