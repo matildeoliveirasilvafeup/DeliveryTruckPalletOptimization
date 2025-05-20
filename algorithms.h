@@ -10,15 +10,12 @@
 class Algorithms {
 public:
     static unsigned int brute_force(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
-<<<<<<< HEAD
     static unsigned int back_tracking(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
     static unsigned int ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
     static unsigned int dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
 private:
     static void back_tracking_rec(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int curIndex, unsigned int maxWeight, unsigned int curValue, bool curItems[], unsigned int& maxValue, bool usedItems[]);
-=======
 	static std::pair<int, std::vector<int>> solveWithDP(std::vector<Pallet>& pallets, int capacity); //added by Matilde
->>>>>>> d442f6cdfac7348883ade3cefdf9009b91d5f0cc
 };
 
 #endif //ALGORITHMS_H
