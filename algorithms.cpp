@@ -74,7 +74,11 @@ void Algorithms::back_tracking_rec(unsigned int values[], unsigned int weights[]
 }
 
 unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
-    return -1;
+    //create input and output files, or clean them if they already exist
+    std::ofstream input("script_files/input.txt");
+    std::ofstream output("script_files/input.txt");
+
+
 }
 
 unsigned int Algorithms::dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
