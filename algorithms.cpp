@@ -4,7 +4,6 @@
 
 #include "algorithms.h"
 
-#include <format>
 #include <iostream>
 #include <fstream>
 #include <set>

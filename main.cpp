@@ -15,7 +15,7 @@ int main() {
 		}
 
 		// Pede ao utilizador ou define o algoritmo aqui
-		std::string algo = "brute_force";
+		std::string algo = "ilp";
 		runAlgorithm(algo, pallets, truckData.capacity);
 
 	} catch (const std::runtime_error& e) {
