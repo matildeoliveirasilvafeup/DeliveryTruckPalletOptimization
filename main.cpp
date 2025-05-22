@@ -15,7 +15,7 @@ int main() {
 		}
 
 		// Pede ao utilizador ou define o algoritmo aqui
-		std::string algo = "ilp";
+		std::string algo = "dynamic";
 		runAlgorithm(algo, pallets, truckData.capacity);
 
 	} catch (const std::runtime_error& e) {

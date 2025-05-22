@@ -97,7 +97,7 @@ unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsi
 
     //run python script
 
-    int ret = system("python ilp_solver.py script_files/input.txt script_files/output.txt");
+    int ret = system("python3 ilp_solver.py script_files/input.txt script_files/output.txt");
     if (ret != 0) {
         std::cerr << "ilp_solver.py failed" << std::endl;
         return -1;
