@@ -6,6 +6,6 @@
 #include "csvparsing.h"
 
 
-void runAlgorithm(const std::string& algoName, std::vector<Pallet>& pallets, int capacity);
+void runAlgorithm(const std::string& nome_algoritmo, std::vector<Pallet>& pallets, int capacity, const std::string& dataset, const std::string& csvFilename);
 
 #endif
