@@ -9,176 +9,173 @@
 #include <set>
 #include <sstream>
 #include <vector>
+#include <algorithm>  // std::sort
 
 unsigned int Algorithms::brute_force(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     bool curCandidate[n];
-    for (int i = 0; i < n; i++) {
-        curCandidate[i] = false;
-    }
+    for (unsigned i = 0; i < n; i++) curCandidate[i] = false;
     int maxValue = 0;
     while (true) {
-        int curValue = 0;
-        int curWeight = 0;
-        for (int k = 0; k < n; k++) {
-            curValue += (unsigned int) curCandidate[k] * values[k];
-            curWeight += (unsigned int) curCandidate[k] * weights[k];
+        int curValue = 0, curWeight = 0;
+        for (unsigned k = 0; k < n; k++) {
+            curValue  += curCandidate[k] * values[k];
+            curWeight += curCandidate[k] * weights[k];
         }
-        if (curWeight <= maxWeight) {
-            if (curValue > maxValue) {
-                maxValue = curValue;
-                for (int k = 0; k < n; k++) {
-                    usedItems[k] = curCandidate[k];
-                };
-            }
+        if (curWeight <= maxWeight && curValue > maxValue) {
+            maxValue = curValue;
+            for (unsigned k = 0; k < n; k++) usedItems[k] = curCandidate[k];
         }
-
-        int v = 0;
-        while (curCandidate[v]) {
-            v++;
-            if (v >= n) break;
-        }
-        if (v == n) break;
+        unsigned v = 0;
+        while (v < n && curCandidate[v]) v++;
+        if (v >= n) break;
         curCandidate[v] = true;
-        for (int m = 0; m < v; m++) curCandidate[m] = false;
+        for (unsigned m = 0; m < v; m++) curCandidate[m] = false;
     }
     return maxValue;
 }
 
 unsigned int Algorithms::back_tracking(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     unsigned int maxValue = 0;
-    unsigned int curIndex = 0; //identifies the current lv on the tree
-    bool curItem[n];
-    for (int i = 0; i < n; i++) {
-        curItem[i] = false;
+    bool curItems[n];
+    for (unsigned i = 0; i < n; i++) {
+        curItems[i] = false;
         usedItems[i] = false;
     }
-    back_tracking_rec(values, weights, n, curIndex, maxWeight, 0, curItem, maxValue, usedItems);
-
+    back_tracking_rec(values, weights, n, 0, maxWeight, 0, curItems, maxValue, usedItems);
     return maxValue;
 }
 
-void Algorithms::back_tracking_rec(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int curIndex, unsigned int maxWeight, unsigned int curValue, bool curItems[], unsigned int& maxValue, bool usedItems[]) {
-    //leaf node
+void Algorithms::back_tracking_rec(unsigned int values[], unsigned int weights[], unsigned int n,
+                                   unsigned int curIndex, unsigned int maxWeight,
+                                   unsigned int curValue, bool curItems[],
+                                   unsigned int& maxValue, bool usedItems[]) {
     if (curIndex == n) {
         if (curValue > maxValue) {
             maxValue = curValue;
-            for (int i = 0; i < n; i++) usedItems[i] = curItems[i];
+            for (unsigned i = 0; i < n; i++) usedItems[i] = curItems[i];
         }
+        return;
     }
-    else {
-        //option 1 - include node
-        if (weights[curIndex] <= maxWeight) {
-            curItems[curIndex] = true;
-            back_tracking_rec(values, weights, n, curIndex+1, maxWeight - weights[curIndex], curValue + values[curIndex], curItems, maxValue, usedItems);
-            curItems[curIndex] = false;
-        }
-        //option 2 - don't include
-        back_tracking_rec(values, weights, n, curIndex + 1, maxWeight, curValue, curItems, maxValue, usedItems);
+    // inclui
+    if (weights[curIndex] <= maxWeight) {
+        curItems[curIndex] = true;
+        back_tracking_rec(values, weights, n, curIndex+1, maxWeight - weights[curIndex],
+                          curValue + values[curIndex], curItems, maxValue, usedItems);
+        curItems[curIndex] = false;
     }
+    // não inclui
+    back_tracking_rec(values, weights, n, curIndex+1, maxWeight,
+                      curValue, curItems, maxValue, usedItems);
 }
 
 unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
-    //create input and output files, or clean them if they already exist
+    // input/output files
     std::ofstream input("script_files/input.txt");
     std::ofstream output("script_files/output.txt");
 
-    //add values to the input file
-
-    //1 - number of items
+    // 1) número de itens
     input << n << std::endl;
-    //2 - capacity
+    // 2) capacidade
     input << maxWeight << std::endl;
-    //3 - weights
-    for (int i = 0; i < n; i++) input << weights[i] << ' ';
+    // 3) pesos
+    for (int i = 0; i < (int)n; i++) input << weights[i] << ' ';
     input << std::endl;
-    //4 - values
-    for (int i = 0; i < n; i++) input << values[i] << ' ';
+    // 4) valores
+    for (int i = 0; i < (int)n; i++) input << values[i] << ' ';
     input << std::endl;
+    input.close();
 
-    //run python script
-
+    // executa script Python
     int ret = system("python ilp_solver.py script_files/input.txt script_files/output.txt");
     if (ret != 0) {
         std::cerr << "ilp_solver.py failed" << std::endl;
-        return -1;
+        return static_cast<unsigned int>(-1);
     }
 
-    //read output
-
+    // lê output: 1) profit  2) weight  3) lista de índices
     std::ifstream infile("script_files/output.txt");
-    int totalValue, totalWeight;
+    int totalValue = 0, totalWeight = 0;
     std::string line;
 
     std::getline(infile, line);
-    totalValue = stoi(line);
+    totalValue = std::stoi(line);
 
     std::getline(infile, line);
-    totalWeight = stoi(line);
+    totalWeight = std::stoi(line);
 
     std::getline(infile, line);
     std::istringstream iss(line);
-    std::set<int> selectedIndices;
-    int index;
-    while (iss >> index) {
-        selectedIndices.insert(index);
-    }
 
+    std::set<int> sel;
+    int idx;
+    while (iss >> idx) {
+        sel.insert(idx);
+    }
     infile.close();
 
-    for (int i = 0; i < n; i++) {
-        if (selectedIndices.contains(i)) usedItems[i] = true;
+    // marca usados
+    for (int i = 0; i < (int)n; i++) {
+        usedItems[i] = (sel.count(i) > 0);
     }
 
-
-    input.close();
-    output.close();
-    return totalValue;
+    return static_cast<unsigned int>(totalValue);
 }
 
 unsigned int Algorithms::dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
     unsigned int maxValue[n][maxWeight+1];
-    for (int i = 0; i < n; i++) {
-        for (int k = 0; k < maxWeight+1; k++) {
-            maxValue[i][k] = 0;
+    // inicializa
+    for (unsigned i = 0; i < n; i++)
+        for (unsigned w = 0; w <= maxWeight; w++)
+            maxValue[i][w] = 0;
+
+    // preenche tabela
+    for (unsigned i = 0; i < n; i++) {
+        for (unsigned w = 1; w <= maxWeight; w++) {
+            unsigned int dont = (i > 0 ? maxValue[i-1][w] : 0);
+            unsigned int take = (w >= weights[i]
+                                ? ((i > 0 ? maxValue[i-1][w-weights[i]] : 0) + values[i])
+                                : 0);
+            maxValue[i][w] = std::max(dont, take);
         }
     }
 
-    int value1, value2; //value of sack on H1, value of sack on H2
-    for (int i = 0; i < n; i++) {
-        for (int k = 1; k < maxWeight+1; k++) {
-            //h1, dont put item
-            if (i > 0) value1 = maxValue[i-1][k];
-            else value1 = 0;
-
-            //h2, put item
-            if (i > 0) {
-                if (k >= weights[i]) value2 = maxValue[i-1][k-weights[i]] + values[i];
-                else value2 = maxValue[i-1][k];
-            }
-            else {
-                if (k >= weights[i]) value2 = values[i];
-                else value2 = 0;
-            }
-
-            if (value1 > value2) maxValue[i][k] = value1;
-            else maxValue[i][k] = value2;
-
-        }
-    }
-
-    for (int i = 0; i < n; i++) usedItems[i] = false;
-
-    int curWeight = maxWeight;
+    // reconstrói solução
+    for (unsigned i = 0; i < n; i++) usedItems[i] = false;
+    unsigned w = maxWeight;
     for (int i = n-1; i >= 1; i--) {
-        if (maxValue[i][curWeight] != maxValue[i-1][curWeight]) {
+        if (maxValue[i][w] != maxValue[i-1][w]) {
             usedItems[i] = true;
-            curWeight -= weights[i];
-            if (curWeight <= 0) break;
+            w -= weights[i];
         }
     }
-    if (curWeight >= weights[0]) {
-        usedItems[0] = true;
-    }
+    if (w >= weights[0]) usedItems[0] = true;
 
     return maxValue[n-1][maxWeight];
+}
+
+// ------- GREEDY HEURISTIC 0/1 KNAPSACK -------
+
+unsigned int Algorithms::greedy(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
+    // calcula razão e inicializa flags
+    std::vector<std::pair<double,int>> order;
+    order.reserve(n);
+    for (unsigned i = 0; i < n; i++) {
+        double r = double(values[i]) / double(weights[i]);
+        order.emplace_back(r, i);
+        usedItems[i] = false;
+    }
+    // ordena decrescentemente por razão
+    std::sort(order.begin(), order.end(),
+              [](auto &a, auto &b){ return a.first > b.first; });
+
+    unsigned int currentW = 0, totalP = 0;
+    for (auto &p : order) {
+        int i = p.second;
+        if (currentW + weights[i] <= maxWeight) {
+            usedItems[i] = true;
+            currentW   += weights[i];
+            totalP     += values[i];
+        }
+    }
+    return totalP;
 }

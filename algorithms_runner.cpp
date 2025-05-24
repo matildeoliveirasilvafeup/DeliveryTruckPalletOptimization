@@ -13,29 +13,21 @@ void saveResultToCSV(const std::string& filename,
                      unsigned int total_weight,
                      const std::vector<int>& selected_items) {
 
-    std::ofstream file(filename, std::ios::app); // append mode
-
+    std::ofstream file(filename, std::ios::app);
     if (!file.is_open()) {
         std::cerr << "Error: Unable to open CSV file for writing." << std::endl;
         return;
     }
-
-    // Write: Dataset, Algorithm, Time(ms), Total Profit, Total Weight
-    file << dataset << "," << algorithm << "," << (time_sec * 1000) << ","
-         << total_profit << "," << total_weight << ",";
-
-    // Write selected items space-separated
+    file << dataset << "," << algorithm << "," << (time_sec * 1000)
+         << "," << total_profit << "," << total_weight << ",";
     for (size_t i = 0; i < selected_items.size(); ++i) {
         file << selected_items[i];
-        if (i != selected_items.size() - 1)
-            file << " ";
+        if (i + 1 < selected_items.size()) file << " ";
     }
-
     file << "\n";
     file.close();
 }
 
-// Run selected algorithm and save results
 void runAlgorithm(const std::string& nome_algoritmo,
                   std::vector<Pallet>& pallets,
                   int capacity,
@@ -46,9 +38,8 @@ void runAlgorithm(const std::string& nome_algoritmo,
     unsigned int values[n];
     unsigned int weights[n];
     bool usedItems[n];
-
-    for (unsigned int i = 0; i < n; i++) {
-        values[i] = pallets[i].profit;
+    for (unsigned i = 0; i < n; i++) {
+        values[i]  = pallets[i].profit;
         weights[i] = pallets[i].weight;
         usedItems[i] = false;
     }
@@ -59,26 +50,33 @@ void runAlgorithm(const std::string& nome_algoritmo,
     if (nome_algoritmo == "brute_force") {
         auto start = std::chrono::high_resolution_clock::now();
         maxProfit = Algorithms::brute_force(values, weights, n, capacity, usedItems);
-        auto end = std::chrono::high_resolution_clock::now();
-        duration = end - start;
+        auto end   = std::chrono::high_resolution_clock::now();
+        duration   = end - start;
         std::cout << "\n[Brute Force] Execution time: " << duration.count() << " seconds\n";
-
-    } else if (nome_algoritmo == "ilp") {
-        auto start = std::chrono::high_resolution_clock::now();
-        maxProfit = Algorithms::ilp(values, weights, n, capacity, usedItems);
-        auto end = std::chrono::high_resolution_clock::now();
-        duration = end - start;
-        std::cout << "\n[ILP] Execution time: " << duration.count() << " seconds\n";
 
     } else if (nome_algoritmo == "dynamic") {
         auto start = std::chrono::high_resolution_clock::now();
         maxProfit = Algorithms::dynamic(values, weights, n, capacity, usedItems);
-        auto end = std::chrono::high_resolution_clock::now();
-        duration = end - start;
+        auto end   = std::chrono::high_resolution_clock::now();
+        duration   = end - start;
         std::cout << "\n[Dynamic Programming] Execution time: " << duration.count() << " seconds\n";
 
+    } else if (nome_algoritmo == "greedy") {
+        auto start = std::chrono::high_resolution_clock::now();
+        maxProfit = Algorithms::greedy(values, weights, n, capacity, usedItems);
+        auto end   = std::chrono::high_resolution_clock::now();
+        duration   = end - start;
+        std::cout << "\n[Greedy] Execution time: " << duration.count() << " seconds\n";
+
+    } else if (nome_algoritmo == "ilp") {
+        auto start = std::chrono::high_resolution_clock::now();
+        maxProfit = Algorithms::ilp(values, weights, n, capacity, usedItems);
+        auto end   = std::chrono::high_resolution_clock::now();
+        duration   = end - start;
+        std::cout << "\n[ILP] Execution time: " << duration.count() << " seconds\n";
+
     } else {
-        std::cout << "Unknown algorithm: " << nome_algoritmo << std::endl;
+        std::cerr << "Unknown algorithm: " << nome_algoritmo << std::endl;
         return;
     }
 
@@ -86,25 +84,22 @@ void runAlgorithm(const std::string& nome_algoritmo,
 
     std::vector<int> selected;
     unsigned int totalWeight = 0;
-
-    for (unsigned int i = 0; i < n; i++) {
+    for (unsigned i = 0; i < n; i++) {
         if (usedItems[i]) {
             selected.push_back(pallets[i].id);
             totalWeight += weights[i];
         }
     }
-
     std::cout << "Selected Pallet IDs: ";
-    for (int id : selected) {
-        std::cout << id << " ";
-    }
+    for (int id : selected) std::cout << id << " ";
     std::cout << std::endl;
 
-    // Save to CSV
+    // Mapeia nome_algoritmo -> etiqueta
     std::string algorithmLabel;
-    if (nome_algoritmo == "brute_force") algorithmLabel = "Brute-force";
-    else if (nome_algoritmo == "ilp") algorithmLabel = "ILP";
-    else if (nome_algoritmo == "dynamic") algorithmLabel = "Dynamic Programming";
+    if      (nome_algoritmo == "brute_force") algorithmLabel = "Brute-force";
+    else if (nome_algoritmo == "dynamic")     algorithmLabel = "Dynamic Programming";
+    else if (nome_algoritmo == "greedy")      algorithmLabel = "Greedy";
+    else if (nome_algoritmo == "ilp")         algorithmLabel = "ILP";
 
     saveResultToCSV(csvFilename, dataset, algorithmLabel, duration.count(), maxProfit, totalWeight, selected);
 }

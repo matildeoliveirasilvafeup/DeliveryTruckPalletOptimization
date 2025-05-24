@@ -15,7 +15,7 @@ plt.xlabel('Algorithm')
 plt.ylabel('Time (ms)')
 plt.legend()
 plt.grid(True)
-plt.savefig('execution_time_comparison.png')
+plt.savefig('results_and_graphs/execution_time_comparison.png')
 plt.close()
 
 # Total profit per algorithm for each dataset
@@ -29,7 +29,7 @@ plt.xlabel('Algorithm')
 plt.ylabel('Total Profit')
 plt.legend()
 plt.grid(True)
-plt.savefig('total_profit_comparison.png')
+plt.savefig('results_and_graphs/total_profit_comparison.png')
 plt.close()
 
-print("Graphs generated in png format in results_and_graphs.")
+print("Graphs generated in png format in results_and_graphs/")
