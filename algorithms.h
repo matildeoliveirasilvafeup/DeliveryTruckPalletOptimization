@@ -16,6 +16,9 @@ public:
     /// @param maxWeight unsigned int - maximum weight the delivery truck can carry
     /// @param usedItems bool[] - an array indicating whether a pallet is used in the solution (true) or not (false)
     /// @return unsigned int - the total value achieved with the combination of pallets the algorithm chose
+    /// @brief Brute-Force algorithm to maximize pallet profit
+    /// @details Finds out the best combination of pallets to maximize profit, in a brute-force manner (testing every combination possible)
+    /// @note O(2^n)
     static unsigned int brute_force(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
 
     ///
@@ -25,6 +28,9 @@ public:
     /// @param maxWeight unsigned int - maximum weight the delivery truck can carry
     /// @param usedItems bool[] - an array indicating whether a pallet is used in the solution (true) or not (false)
     /// @return unsigned int - the total value achieved with the combination of pallets the algorithm chose
+    /// @brief Backtracking algorith to maximize pallet profit
+    /// @details Finds out the best combination of pallets to maximize profit, using a backtracking approach with a decision tree
+    /// @note O(2^n)
     static unsigned int back_tracking(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
 
     ///
@@ -34,6 +40,9 @@ public:
     /// @param maxWeight unsigned int - maximum weight the delivery truck can carry
     /// @param usedItems bool[] - an array indicating whether a pallet is used in the solution (true) or not (false)
     /// @return unsigned int - the total value achieved with the combination of pallets the algorithm chose
+    /// @brief Integer Linear Programming algorithm to maximize pallet profit
+    /// @details Finds out the best combination of pallets to maximize profit, sending the input to an ILP python script and reading its output
+    /// @note O(2^n) worst case, but practically much faster due to optimization techniques
     static unsigned int ilp(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
 
     ///
@@ -43,6 +52,9 @@ public:
     /// @param maxWeight unsigned int - maximum weight the delivery truck can carry
     /// @param usedItems bool[] - an array indicating whether a pallet is used in the solution (true) or not (false)
     /// @return unsigned int - the total value achieved with the combination of pallets the algorithm chose
+    /// @brief Dynamic Programming algorithm to maximize pallet profit
+    /// @details Finds out the best combination of pallets to maximize profit, using a table to avoid recomputing subproblems
+    /// @note O(nW)
     static unsigned int dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]);
 private:
     ///
@@ -55,6 +67,9 @@ private:
     /// @param curItems bool[] - an array indicating which pallets are being considered in the current decision state
     /// @param maxValue unsigned int - the overall maximum value that the algorithm found in the decision states it has explored
     /// @param usedItems bool[] - an array indicating whether a pallet is used in the solution (true) or not (false)
+    /// @brief Recursive helper function for the backtracking algorithm
+    /// @details Evaluates two decisions at any given decision state - to include the pallet at the current index, or not
+    /// @note O(2^n)
     static void back_tracking_rec(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int curIndex, unsigned int maxWeight, unsigned int curValue, bool curItems[], unsigned int& maxValue, bool usedItems[]);
 };
 

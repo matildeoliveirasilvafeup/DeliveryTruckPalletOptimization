@@ -1,0 +1,4 @@
+Dataset,Algorithm,Execution Time (ms),Total Profit,Total Weight,Selected Pallets
+Pallets_01.csv,Brute-force,0.000443,21,80,2 3
+Pallets_01.csv,Dynamic Programming,0.002596,21,80,2 3
+Pallets_01.csv,ILP,60.3779,21,80,2 3
