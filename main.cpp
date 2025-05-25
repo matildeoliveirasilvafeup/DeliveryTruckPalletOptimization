@@ -15,8 +15,8 @@ void runBatchMode() {
 
     TruckData truck = readTruckInfo("TruckAndPallets_01.csv");
 
-    std::vector<std::string> datasets   = { "Pallets_01.csv" /*, outros datasets */ };
-    std::vector<std::string> algorithms = { "brute_force", "dynamic", "greedy", "ilp" };
+    std::vector<std::string> datasets   = { "Pallets_01.csv", "Pallets_10.csv", "Pallets_100.csv", "Pallets_1000.csv" };
+    std::vector<std::string> algorithms = { "brute_force", "dynamic", "greedy", "ilp", "back_tracking"};
 
     std::cout << "Modo Batch iniciado...\n";
     for (const auto& ds : datasets) {
@@ -67,9 +67,9 @@ int main() {
     std::cout << "Capacidade do camião: " << truck.capacity
               << ", número de paletes disponíveis: " << truck.numPallets << "\n";
 
-    std::vector<std::string> datasets   = { "Pallets_01.csv" /*, outros datasets */ };
-    std::vector<std::string> algorithms = { "brute_force", "dynamic", "greedy", "ilp" };
-    std::vector<std::string> algoLabels  = { "Brute-force", "Programação Dinâmica", "Greedy", "ILP" };
+    std::vector<std::string> datasets   = { "Pallets_01.csv", "Pallets_10.csv", "Pallets_100.csv", "Pallets_1000.csv" };
+    std::vector<std::string> algorithms = { "brute_force", "dynamic", "greedy", "ilp", "back_tracking" };
+    std::vector<std::string> algoLabels  = { "Brute-force", "Programação Dinâmica", "Greedy", "ILP", "Back Tracking" };
 
     int choiceDataset = -1;
     int choiceAlgo    = -1;
