@@ -1,13 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
-import os
 
-os.makedirs('results_and_graphs', exist_ok=True)
-
+# Lê o ficheiro results.csv que está uma pasta acima da pasta onde o script está
 df = pd.read_csv('../results.csv')
 
-# Limpar espaços
+# Limpar espaços em branco no nome do dataset
 df['Dataset'] = df['Dataset'].str.strip()
 
 # Extrair N do nome do dataset
@@ -43,7 +41,7 @@ plt.xticks(Ns_to_plot, Ns_to_plot)
 plt.legend()
 plt.grid(True, which="both", linestyle='--', linewidth=0.5)
 plt.tight_layout()
-plt.savefig('execution_time_comparison.png')
+plt.savefig('execution_time_comparison.png')  # Guarda aqui na pasta results_and_graphs
 plt.close()
 
 # Plot Total Profit
@@ -59,9 +57,9 @@ plt.xticks(Ns_to_plot, Ns_to_plot)
 plt.legend()
 plt.grid(True, which="both", linestyle='--', linewidth=0.5)
 plt.tight_layout()
-plt.savefig('total_profit_comparison.png')
+plt.savefig('total_profit_comparison.png')  # Também aqui
 plt.close()
 
-print("Gráficos gerados em: results_and_graphs/")
+print("Gráficos gerados em: ./ (pasta results_and_graphs)")
 print(df.head(10))
 print(df['Dataset'].unique())
