@@ -5,7 +5,7 @@ import os
 
 os.makedirs('results_and_graphs', exist_ok=True)
 
-df = pd.read_csv('results.csv')
+df = pd.read_csv('../results.csv')
 
 # Limpar espaços
 df['Dataset'] = df['Dataset'].str.strip()
