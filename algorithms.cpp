@@ -120,38 +120,44 @@ unsigned int Algorithms::ilp(unsigned int values[], unsigned int weights[], unsi
 
     return static_cast<unsigned int>(totalValue);
 }
-
+// Implementação otimizada da DP usando vetor 1D para reduzir o uso de memória, mantendo o rastreamento dos itens selecionados.
 unsigned int Algorithms::dynamic(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight, bool usedItems[]) {
-    unsigned int maxValue[n][maxWeight+1];
-    // inicializa
-    for (unsigned i = 0; i < n; i++)
-        for (unsigned w = 0; w <= maxWeight; w++)
-            maxValue[i][w] = 0;
+    // Vetor para guardar o valor máximo para cada capacidade até maxWeight
+    unsigned int maxValue[maxWeight + 1];
 
-    // preenche tabela
+    // Inicializa maxValue com 0
+    for (unsigned w = 0; w <= maxWeight; w++)
+        maxValue[w] = 0;
+
+    // Vetor auxiliar para guardar qual item foi escolhido para cada capacidade
+    int itemChoice[maxWeight + 1];
+    for (unsigned w = 0; w <= maxWeight; w++)
+        itemChoice[w] = -1;
+
+    // Preenche maxValue usando abordagem bottom-up com vetor 1D para melhor uso de memória
     for (unsigned i = 0; i < n; i++) {
-        for (unsigned w = 1; w <= maxWeight; w++) {
-            unsigned int dont = (i > 0 ? maxValue[i-1][w] : 0);
-            unsigned int take = (w >= weights[i]
-                                ? ((i > 0 ? maxValue[i-1][w-weights[i]] : 0) + values[i])
-                                : 0);
-            maxValue[i][w] = std::max(dont, take);
+        // Iterar para trás para evitar sobrescrever estados que ainda são necessários
+        for (int w = maxWeight; w >= (int)weights[i]; w--) {
+            unsigned int valIfTaken = maxValue[w - weights[i]] + values[i];
+            if (valIfTaken > maxValue[w]) {
+                maxValue[w] = valIfTaken;
+                itemChoice[w] = i;  // guarda o índice do item escolhido para peso w
+            }
         }
     }
 
-    // reconstrói solução
+    // Reconstrói a solução a partir do vetor itemChoice
     for (unsigned i = 0; i < n; i++) usedItems[i] = false;
-    unsigned w = maxWeight;
-    for (int i = n-1; i >= 1; i--) {
-        if (maxValue[i][w] != maxValue[i-1][w]) {
-            usedItems[i] = true;
-            w -= weights[i];
-        }
+    int w = maxWeight;
+    while (w > 0 && itemChoice[w] != -1) {
+        int i = itemChoice[w];
+        usedItems[i] = true;
+        w -= weights[i];
     }
-    if (w >= weights[0]) usedItems[0] = true;
 
-    return maxValue[n-1][maxWeight];
+    return maxValue[maxWeight];
 }
+
 
 // ------- GREEDY HEURISTIC 0/1 KNAPSACK -------
 
