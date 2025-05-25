@@ -13,8 +13,8 @@ void runBatchMode() {
     clearFile << "Dataset,Algorithm,Execution Time (ms),Total Profit,Total Weight,Selected Pallets\n";
     clearFile.close();
 
-    std::vector<std::string> trucks     = {"TruckAndPallets_01.csv", "TruckAndPallets_02.csv"};
-    std::vector<std::string> datasets   = { "Pallets_01.csv", "Pallets_02.csv"};
+    std::vector<std::string> trucks     = {"TruckAndPallets_01.csv", "TruckAndPallets_02.csv", "TrucksAndPallets_03.csv", "TruckAndPallets_04.csv"};
+    std::vector<std::string> datasets   = { "Pallets_01.csv", "Pallets_10.csv", "Pallets_100", "Pallets_1000.csv"};
     std::vector<std::string> algorithms = { "brute_force", "dynamic", "greedy", "ilp", "back_tracking"};
 
     std::cout << "Modo Batch iniciado...\n";
