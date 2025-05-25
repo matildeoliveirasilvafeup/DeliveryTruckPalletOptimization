@@ -1,0 +1,168 @@
+\doxysection{Algorithms Class Reference}
+\hypertarget{classAlgorithms}{}\label{classAlgorithms}\index{Algorithms@{Algorithms}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int \mbox{\hyperlink{classAlgorithms_a3f8b81b45509c33e87de3b1f2ce75eac}{brute\+\_\+force}} (unsigned int values\mbox{[}$\,$\mbox{]}, unsigned int weights\mbox{[}$\,$\mbox{]}, unsigned int n, unsigned int max\+Weight, bool used\+Items\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Brute-\/\+Force algorithm to maximize pallet profit. \end{DoxyCompactList}\item 
+static unsigned int \mbox{\hyperlink{classAlgorithms_a9f259bcf50a11e3640e9f2be67eb88e8}{back\+\_\+tracking}} (unsigned int values\mbox{[}$\,$\mbox{]}, unsigned int weights\mbox{[}$\,$\mbox{]}, unsigned int n, unsigned int max\+Weight, bool used\+Items\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Backtracking algorith to maximize pallet profit. \end{DoxyCompactList}\item 
+static unsigned int \mbox{\hyperlink{classAlgorithms_a134722826f41ce944d6b3c9da095c2fc}{ilp}} (unsigned int values\mbox{[}$\,$\mbox{]}, unsigned int weights\mbox{[}$\,$\mbox{]}, unsigned int n, unsigned int max\+Weight, bool used\+Items\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Integer Linear Programming algorithm to maximize pallet profit. \end{DoxyCompactList}\item 
+static unsigned int \mbox{\hyperlink{classAlgorithms_a331db0e8fb9f2fe82f364dcc68803d4b}{dynamic}} (unsigned int values\mbox{[}$\,$\mbox{]}, unsigned int weights\mbox{[}$\,$\mbox{]}, unsigned int n, unsigned int max\+Weight, bool used\+Items\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Dynamic Programming algorithm to maximize pallet profit. \end{DoxyCompactList}\item 
+static unsigned int \mbox{\hyperlink{classAlgorithms_a262f54054da927ec481c31465d45c6e8}{greedy}} (unsigned int values\mbox{[}$\,$\mbox{]}, unsigned int weights\mbox{[}$\,$\mbox{]}, unsigned int n, unsigned int max\+Weight, bool used\+Items\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Greedy heuristic for 0/1 Knapsack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAlgorithms_a9f259bcf50a11e3640e9f2be67eb88e8}\index{Algorithms@{Algorithms}!back\_tracking@{back\_tracking}}
+\index{back\_tracking@{back\_tracking}!Algorithms@{Algorithms}}
+\doxysubsubsection{\texorpdfstring{back\_tracking()}{back\_tracking()}}
+{\footnotesize\ttfamily \label{classAlgorithms_a9f259bcf50a11e3640e9f2be67eb88e8} 
+static unsigned int Algorithms\+::back\+\_\+tracking (\begin{DoxyParamCaption}\item[{unsigned int}]{values}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{weights}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{n}{, }\item[{unsigned int}]{max\+Weight}{, }\item[{bool}]{used\+Items}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Backtracking algorith to maximize pallet profit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & unsigned int\mbox{[}\mbox{]} -\/ an array with the value of each pallet \\
+\hline
+{\em weights} & unsigned int\mbox{[}\mbox{]} -\/ an array with the weight of each pallet \\
+\hline
+{\em n} & unsigned int -\/ number of pallets \\
+\hline
+{\em max\+Weight} & unsigned int -\/ maximum weight the delivery truck can carry \\
+\hline
+{\em used\+Items} & bool\mbox{[}\mbox{]} -\/ an array indicating whether a pallet is used in the solution (true) or not (false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int -\/ the total value achieved with the combination of pallets the algorithm chose
+\end{DoxyReturn}
+Finds out the best combination of pallets to maximize profit, using a backtracking approach with a decision tree \begin{DoxyNote}{Note}
+O(2\texorpdfstring{$^\wedge$}{\string^}n) 
+\end{DoxyNote}
+\Hypertarget{classAlgorithms_a3f8b81b45509c33e87de3b1f2ce75eac}\index{Algorithms@{Algorithms}!brute\_force@{brute\_force}}
+\index{brute\_force@{brute\_force}!Algorithms@{Algorithms}}
+\doxysubsubsection{\texorpdfstring{brute\_force()}{brute\_force()}}
+{\footnotesize\ttfamily \label{classAlgorithms_a3f8b81b45509c33e87de3b1f2ce75eac} 
+static unsigned int Algorithms\+::brute\+\_\+force (\begin{DoxyParamCaption}\item[{unsigned int}]{values}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{weights}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{n}{, }\item[{unsigned int}]{max\+Weight}{, }\item[{bool}]{used\+Items}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Brute-\/\+Force algorithm to maximize pallet profit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & unsigned int\mbox{[}\mbox{]} -\/ an array with the value of each pallet \\
+\hline
+{\em weights} & unsigned int\mbox{[}\mbox{]} -\/ an array with the weight of each pallet \\
+\hline
+{\em n} & unsigned int -\/ number of pallets \\
+\hline
+{\em max\+Weight} & unsigned int -\/ maximum weight the delivery truck can carry \\
+\hline
+{\em used\+Items} & bool\mbox{[}\mbox{]} -\/ an array indicating whether a pallet is used in the solution (true) or not (false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int -\/ the total value achieved with the combination of pallets the algorithm chose
+\end{DoxyReturn}
+Finds out the best combination of pallets to maximize profit, in a brute-\/force manner (testing every combination possible) \begin{DoxyNote}{Note}
+O(2\texorpdfstring{$^\wedge$}{\string^}n) 
+\end{DoxyNote}
+\Hypertarget{classAlgorithms_a331db0e8fb9f2fe82f364dcc68803d4b}\index{Algorithms@{Algorithms}!dynamic@{dynamic}}
+\index{dynamic@{dynamic}!Algorithms@{Algorithms}}
+\doxysubsubsection{\texorpdfstring{dynamic()}{dynamic()}}
+{\footnotesize\ttfamily \label{classAlgorithms_a331db0e8fb9f2fe82f364dcc68803d4b} 
+static unsigned int Algorithms\+::dynamic (\begin{DoxyParamCaption}\item[{unsigned int}]{values}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{weights}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{n}{, }\item[{unsigned int}]{max\+Weight}{, }\item[{bool}]{used\+Items}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Dynamic Programming algorithm to maximize pallet profit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & unsigned int\mbox{[}\mbox{]} -\/ an array with the value of each pallet \\
+\hline
+{\em weights} & unsigned int\mbox{[}\mbox{]} -\/ an array with the weight of each pallet \\
+\hline
+{\em n} & unsigned int -\/ number of pallets \\
+\hline
+{\em max\+Weight} & unsigned int -\/ maximum weight the delivery truck can carry \\
+\hline
+{\em used\+Items} & bool\mbox{[}\mbox{]} -\/ an array indicating whether a pallet is used in the solution (true) or not (false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int -\/ the total value achieved with the combination of pallets the algorithm chose
+\end{DoxyReturn}
+Finds out the best combination of pallets to maximize profit, using a table to avoid recomputing subproblems \begin{DoxyNote}{Note}
+O(n\+W) 
+\end{DoxyNote}
+\Hypertarget{classAlgorithms_a262f54054da927ec481c31465d45c6e8}\index{Algorithms@{Algorithms}!greedy@{greedy}}
+\index{greedy@{greedy}!Algorithms@{Algorithms}}
+\doxysubsubsection{\texorpdfstring{greedy()}{greedy()}}
+{\footnotesize\ttfamily \label{classAlgorithms_a262f54054da927ec481c31465d45c6e8} 
+static unsigned int Algorithms\+::greedy (\begin{DoxyParamCaption}\item[{unsigned int}]{values}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{weights}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{n}{, }\item[{unsigned int}]{max\+Weight}{, }\item[{bool}]{used\+Items}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Greedy heuristic for 0/1 Knapsack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & unsigned int\mbox{[}\mbox{]} -\/ an array with the value of each pallet \\
+\hline
+{\em weights} & unsigned int\mbox{[}\mbox{]} -\/ an array with the weight of each pallet \\
+\hline
+{\em n} & unsigned int -\/ number of pallets \\
+\hline
+{\em max\+Weight} & unsigned int -\/ maximum weight the delivery truck can carry \\
+\hline
+{\em used\+Items} & bool\mbox{[}\mbox{]} -\/ an array indicating whether a pallet is used in the solution (true) or not (false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int -\/ the total value achieved with the combination of pallets the algorithm chose
+\end{DoxyReturn}
+Orders pallets by profit/weight ratio and packs while capacity allows \begin{DoxyNote}{Note}
+(O(n log n)) 
+\end{DoxyNote}
+\Hypertarget{classAlgorithms_a134722826f41ce944d6b3c9da095c2fc}\index{Algorithms@{Algorithms}!ilp@{ilp}}
+\index{ilp@{ilp}!Algorithms@{Algorithms}}
+\doxysubsubsection{\texorpdfstring{ilp()}{ilp()}}
+{\footnotesize\ttfamily \label{classAlgorithms_a134722826f41ce944d6b3c9da095c2fc} 
+static unsigned int Algorithms\+::ilp (\begin{DoxyParamCaption}\item[{unsigned int}]{values}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{weights}{\mbox{[}$\,$\mbox{]}, }\item[{unsigned int}]{n}{, }\item[{unsigned int}]{max\+Weight}{, }\item[{bool}]{used\+Items}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Integer Linear Programming algorithm to maximize pallet profit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & unsigned int\mbox{[}\mbox{]} -\/ an array with the value of each pallet \\
+\hline
+{\em weights} & unsigned int\mbox{[}\mbox{]} -\/ an array with the weight of each pallet \\
+\hline
+{\em n} & unsigned int -\/ number of pallets \\
+\hline
+{\em max\+Weight} & unsigned int -\/ maximum weight the delivery truck can carry \\
+\hline
+{\em used\+Items} & bool\mbox{[}\mbox{]} -\/ an array indicating whether a pallet is used in the solution (true) or not (false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int -\/ the total value achieved with the combination of pallets the algorithm chose
+\end{DoxyReturn}
+Finds out the best combination of pallets to maximize profit, sending the input to an ILP python script and reading its output \begin{DoxyNote}{Note}
+O(2\texorpdfstring{$^\wedge$}{\string^}n) worst case, but practically much faster due to optimization techniques 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+algorithms.\+h\end{DoxyCompactItemize}

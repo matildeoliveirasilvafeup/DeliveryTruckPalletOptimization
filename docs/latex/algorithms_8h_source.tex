@@ -1,0 +1,38 @@
+\doxysection{algorithms.\+h}
+\hypertarget{algorithms_8h_source}{}\label{algorithms_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Milla\ on\ 20/05/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ ALGORITHMS\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ALGORITHMS\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}csvparsing.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAlgorithms}{Algorithms}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAlgorithms_a3f8b81b45509c33e87de3b1f2ce75eac}{brute\_force}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ values[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ weights[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ \textcolor{keywordtype}{bool}\ usedItems[]);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAlgorithms_a9f259bcf50a11e3640e9f2be67eb88e8}{back\_tracking}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ values[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ weights[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ \textcolor{keywordtype}{bool}\ usedItems[]);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAlgorithms_a134722826f41ce944d6b3c9da095c2fc}{ilp}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ values[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ weights[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ \textcolor{keywordtype}{bool}\ usedItems[]);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAlgorithms_a331db0e8fb9f2fe82f364dcc68803d4b}{dynamic}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ values[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ weights[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,\ \textcolor{keywordtype}{bool}\ usedItems[]);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAlgorithms_a262f54054da927ec481c31465d45c6e8}{greedy}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ values[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ weights[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ usedItems[]);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ back\_tracking\_rec(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ values[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ weights[],\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ curIndex,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxWeight,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ curValue,\ \textcolor{keywordtype}{bool}\ curItems[],}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\&\ maxValue,\ \textcolor{keywordtype}{bool}\ usedItems[]);}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ALGORITHMS\_H}}
+
+\end{DoxyCode}

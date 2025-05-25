@@ -67,8 +67,9 @@ public:
     /// @param maxWeight unsigned int - maximum weight the delivery truck can carry
     /// @param usedItems bool[] - an array indicating whether a pallet is used in the solution (true) or not (false)
     /// @return unsigned int - the total value achieved with the combination of pallets the algorithm chose
-    /// @brief Greedy heuristic for 0/1 Knapsack (O(n log n))
+    /// @brief Greedy heuristic for 0/1 Knapsack
     /// @details Orders pallets by profit/weight ratio and packs while capacity allows
+    /// @note (O(n log n))
     static unsigned int greedy(unsigned int values[], unsigned int weights[], unsigned int n, unsigned int maxWeight,
                                bool usedItems[]);
 
