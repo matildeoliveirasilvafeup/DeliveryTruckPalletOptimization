@@ -13,17 +13,17 @@ void runBatchMode() {
     clearFile << "Dataset,Algorithm,Execution Time (ms),Total Profit,Total Weight,Selected Pallets\n";
     clearFile.close();
 
-    TruckData truck = readTruckInfo("TruckAndPallets_01.csv");
-
-    std::vector<std::string> datasets   = { "Pallets_01.csv", "Pallets_10.csv", "Pallets_100.csv", "Pallets_1000.csv" };
+    std::vector<std::string> trucks     = {"TruckAndPallets_01.csv", "TruckAndPallets_02.csv"};
+    std::vector<std::string> datasets   = { "Pallets_01.csv", "Pallets_02.csv"};
     std::vector<std::string> algorithms = { "brute_force", "dynamic", "greedy", "ilp", "back_tracking"};
 
     std::cout << "Modo Batch iniciado...\n";
-    for (const auto& ds : datasets) {
-        auto pallets = readPallets(ds);
-        std::cout << "\n[Batch] Dataset: " << ds << "\n";
+    for (int i = 0; i < trucks.size(); i++) {
+        auto truck = readTruckInfo(trucks[i]);
+        auto pallets = readPallets(datasets[i]);
+        std::cout << "\n[Batch] Dataset: " << datasets[i] << "\n";
         for (const auto& alg : algorithms) {
-            runAlgorithm(alg, pallets, truck.capacity, ds, "results.csv");
+            runAlgorithm(alg, pallets, truck.capacity, datasets[i], "results.csv");
         }
     }
     std::cout << "\nModo Batch concluído. Verifique o ficheiro results.csv\n";
