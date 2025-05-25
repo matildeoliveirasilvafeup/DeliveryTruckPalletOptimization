@@ -73,7 +73,14 @@ void runAlgorithm(const std::string& nome_algoritmo,
         maxProfit = Algorithms::ilp(values, weights, n, capacity, usedItems);
         auto end   = std::chrono::high_resolution_clock::now();
         duration   = end - start;
-        std::cout << "\n[ILP] Execution time: " << duration.count() << " seconds\n";
+        std::cout << "\n[ILP] Execution time: " << duration.count() << " seconds\n"
+
+    } else if (nome_algoritmo == "back_tracking") {
+        auto start = std::chrono::high_resolution_clock::now();
+        maxProfit = Algorithms::ilp(values, weights, n, capacity, usedItems);
+        auto end   = std::chrono::high_resolution_clock::now();
+        duration   = end - start;
+        std::cout << "\n[Back Tracking] Execution time: " << duration.count() << " seconds\n";
 
     } else {
         std::cerr << "Unknown algorithm: " << nome_algoritmo << std::endl;
@@ -100,6 +107,6 @@ void runAlgorithm(const std::string& nome_algoritmo,
     else if (nome_algoritmo == "dynamic")     algorithmLabel = "Dynamic Programming";
     else if (nome_algoritmo == "greedy")      algorithmLabel = "Greedy";
     else if (nome_algoritmo == "ilp")         algorithmLabel = "ILP";
-
+    else if (nome_algoritmo == "back_tracking") algorithmLabel = "Back Tracking";
     saveResultToCSV(csvFilename, dataset, algorithmLabel, duration.count(), maxProfit, totalWeight, selected);
 }
