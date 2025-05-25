@@ -1,11 +1,11 @@
 Dataset,Algorithm,Execution Time (ms),Total Profit,Total Weight,Selected Pallets
-Pallets_01.csv,Brute-force,0.000811,14,70,1
-Pallets_01.csv,Dynamic Programming,0.001154,14,70,1
-Pallets_01.csv,Greedy,0.005156,14,70,1
-Pallets_01.csv,ILP,430.284,14,70,1
-Pallets_01.csv,Back Tracking,0.000273,14,70,1
-Pallets_10.csv,Brute-force,0.080755,24,95,3 6 10
-Pallets_10.csv,Dynamic Programming,0.00624,24,75,3 10
-Pallets_10.csv,Greedy,0.01791,24,95,3 6 10
-Pallets_10.csv,ILP,270.221,24,95,3 6 10
-Pallets_10.csv,Back Tracking,0.003414,24,95,3 6 10
+Pallets_01.csv,Brute-force,0.000447,14,70,1
+Pallets_01.csv,Dynamic Programming,0.000844,14,70,1
+Pallets_01.csv,Greedy,0.003282,14,70,1
+Pallets_01.csv,ILP,118.614,14,70,1
+Pallets_01.csv,Back Tracking,0.000173,14,70,1
+Pallets_10.csv,Brute-force,0.050608,24,95,3 6 10
+Pallets_10.csv,Dynamic Programming,0.003007,24,75,3 10
+Pallets_10.csv,Greedy,0.005324,24,95,3 6 10
+Pallets_10.csv,ILP,111.644,24,95,3 6 10
+Pallets_10.csv,Back Tracking,0.002225,24,95,3 6 10
