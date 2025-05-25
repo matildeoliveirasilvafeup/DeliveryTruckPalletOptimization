@@ -1,9 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
+import os
 
-# Lê o ficheiro results.csv que está uma pasta acima da pasta onde o script está
-df = pd.read_csv('../results.csv')
+script_dir = os.path.dirname(__file__)
+csv_path = os.path.join(script_dir, "results.csv")
+
+
+# Lê o ficheiro results.csv
+df = pd.read_csv(csv_path)
 
 # Limpar espaços em branco no nome do dataset
 df['Dataset'] = df['Dataset'].str.strip()
