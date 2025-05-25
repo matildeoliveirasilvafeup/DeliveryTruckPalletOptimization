@@ -73,7 +73,7 @@ void runAlgorithm(const std::string& nome_algoritmo,
         maxProfit = Algorithms::ilp(values, weights, n, capacity, usedItems);
         auto end   = std::chrono::high_resolution_clock::now();
         duration   = end - start;
-        std::cout << "\n[ILP] Execution time: " << duration.count() << " seconds\n"
+        std::cout << "\n[ILP] Execution time: " << duration.count() << " seconds\n";
 
     } else if (nome_algoritmo == "back_tracking") {
         auto start = std::chrono::high_resolution_clock::now();
