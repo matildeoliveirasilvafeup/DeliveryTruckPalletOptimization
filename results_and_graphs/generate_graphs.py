@@ -43,7 +43,7 @@ plt.xticks(Ns_to_plot, Ns_to_plot)
 plt.legend()
 plt.grid(True, which="both", linestyle='--', linewidth=0.5)
 plt.tight_layout()
-plt.savefig('results_and_graphs/execution_time_comparison.png')
+plt.savefig('execution_time_comparison.png')
 plt.close()
 
 # Plot Total Profit
@@ -59,7 +59,7 @@ plt.xticks(Ns_to_plot, Ns_to_plot)
 plt.legend()
 plt.grid(True, which="both", linestyle='--', linewidth=0.5)
 plt.tight_layout()
-plt.savefig('results_and_graphs/total_profit_comparison.png')
+plt.savefig('total_profit_comparison.png')
 plt.close()
 
 print("Gráficos gerados em: results_and_graphs/")
