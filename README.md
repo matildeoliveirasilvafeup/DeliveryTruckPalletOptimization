@@ -31,11 +31,3 @@ Efficiently packing delivery trucks is critical in logistics and supply chain ma
 
 This project explores algorithmic trade-offs between **optimality, efficiency, and feasibility** in real-world optimization.
 
----
-
-## Data and Input Format
-
-Datasets are provided as CSV files:
-
-- `TruckAndPallets_<X>.csv`: Contains truck capacity and the number of pallets.  
-  Example:
