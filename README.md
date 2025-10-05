@@ -1,68 +1,41 @@
-# Individual Route Planning Tool  
-### Design of Algorithms (L.EIC016) — FEUP/FCUP — Spring 2025  
+# Delivery Truck Pallet Packing Optimization
 
-This project consists of the development of a C++ route planning tool that models an urban environment as a weighted undirected graph.  
-It implements greedy shortest-path algorithms to calculate the best and alternative routes, including restricted paths and eco-friendly mixed routes (driving + walking).
-
----
-
-## Project Overview
-
-The goal of this assignment was to apply algorithmic design techniques, particularly greedy approaches, to realistic shortest-path problems.  
-The tool simulates a simplified GPS-like system, supporting multiple functionalities:
-
-- Driving route planning  
-- Alternative route computation (disjoint paths)  
-- Restricted routing — avoiding specific nodes or segments  
-- Environmentally-friendly routes combining driving and walking with parking constraints  
-- Batch mode using `input.txt` and `output.txt`  
-- Full documentation and time complexity analysis (via Doxygen)
+**Course:** Design of Algorithms (DA) – L.EIC016  
+**Semester:** Spring 2025  
+**Project:** Programming Project II  
+**Institution:** Department of Computer Engineering (DEI) / Department of Computer Science (DCC), University of Porto (FEUP/FCUP)  
+**Due Date:** May 25, 2025, 23:59 (PT time)  
 
 ---
 
-## Data and Representation
+## Project Description
 
-The urban environment is represented as a graph:
+This project focuses on the **Delivery Truck Pallet Packing Optimization Problem**, a real-world variation of the 0/1 Knapsack Problem (0/1 KP). The objective is to optimize the packing of pallets into a delivery truck to maximize profit while respecting the truck's maximum weight capacity. 
 
-- Nodes (vertices): street intersections or locations  
-- Edges: street segments, each with driving and walking times  
-- Attributes: parking availability, restricted areas  
+Key goals include:
 
-Input files:
-- `Locations.csv` — location data (ID, name, parking availability)  
-- `Distances.csv` — pairwise connections with driving and walking times  
-
----
-
-## Functionalities Implemented
-
-| Task | Description | Algorithms / Techniques |
-|------|--------------|--------------------------|
-| **T1.1** | Command-line interface & menu system | C++ I/O, menu design |
-| **T1.2** | CSV parsing and graph construction | File handling, adjacency lists |
-| **T1.3** | Documentation and complexity analysis | Doxygen, Big-O analysis |
-| **T2.1** | Best and alternative independent routes | Dijkstra’s algorithm, disjoint path logic |
-| **T2.2** | Restricted route planning (avoid/exclude/include) | Graph pruning, shortest path recalculation |
-| **T3.1** | Mixed route (driving + walking) planning | Multi-stage shortest path, constraints handling |
-| **T3.2** | Approximate alternative solutions | Heuristic adjustment of constraints |
+- Developing teamwork skills by working in groups of 2-3 students.
+- Implementing multiple algorithmic approaches to solve the problem: exhaustive search, dynamic programming, greedy/approximation algorithms, and linear integer programming.
+- Evaluating performance and accuracy across datasets.
+- Delivering a concise demo presentation showcasing algorithmic solutions, trade-offs between optimality and efficiency, and challenges faced.
 
 ---
 
-## Implementation Details
+## Problem Motivation
 
-- Language: C++17  
-- Paradigm: Object-Oriented Programming  
-- Graph structure: custom class based on course-provided template  
-- Input/Output: menu mode and batch mode  
-- Documentation: generated using Doxygen  
-- Error handling: robust parsing and validation of input data  
+Efficiently packing delivery trucks is critical in logistics and supply chain management. Companies aim to maximize shipment value while adhering to weight restrictions. 
+
+- **Truck** → Knapsack  
+- **Pallets** → Items with specific weight and profit  
+- **Objective** → Select a subset of pallets to maximize total profit without exceeding truck capacity  
+
+This project explores algorithmic trade-offs between **optimality, efficiency, and feasibility** in real-world optimization.
 
 ---
 
-## Example Input/Output
+## Data and Input Format
 
-**Example input (`input.txt`):**
-```text
-Mode:driving
-Source:1
-Destination:5
+Datasets are provided as CSV files:
+
+- `TruckAndPallets_<X>.csv`: Contains truck capacity and the number of pallets.  
+  Example:
